@@ -7,11 +7,11 @@ typedef struct {
     long long int val;
 } mat_spr;
 
-void insere (mat_spr *M, int i, int *n, float v);
-int consul (mat_spr *M, int i, int n, float *v);
+void insere (mat_spr *M, int i, int *n, long long int v);
+int consul (mat_spr *M, int i, int n, long long int *v);
 int lugar (mat_spr *M, int i, int n);
 void compacta(mat_spr *M, int i, int *n);
-void atrib(mat_spr *M, int i, int n, float v);
+void atrib(mat_spr *M, int i, int *n, long long int v);
 
 int main () {
 
@@ -49,12 +49,12 @@ while (inicio < op){
 
 }
 
-void insere (mat_spr *M, int i, int *n, float v){
+void insere(mat_spr *M, int i, int *n, long long int v){
     int j = 0, k = 0;
 
     while (M[j].ind < i) j++;
 
-    for (k = n; k > j; k--){
+    for (k = *n; k > j; k--){
         M[k] = M[k - 1];
     }
 
@@ -63,7 +63,7 @@ void insere (mat_spr *M, int i, int *n, float v){
     (*n)++;
 }
 
-int lugar (mat_spr *M, int i, int n) {
+int lugar(mat_spr *M, int i, int n) {
     int j = 0, pos = -1;
 
     for (j = 0; j < n; j++){
@@ -74,7 +74,7 @@ int lugar (mat_spr *M, int i, int n) {
 }
 
 
-int consul (mat_spr *M, int i, int n, float *v){
+int consul(mat_spr *M, int i, int n, long long int *v){
    int j = 0;
    
    if (i < 0){
@@ -95,7 +95,7 @@ int consul (mat_spr *M, int i, int n, float *v){
 void compacta(mat_spr *M, int i, int *n){
     int j = 0;
 
-    for (j = i; j < n-1; j++){
+    for (j = i; j < *n-1; j++){
        M[j] = M[j + 1]; 
     }
 
@@ -103,7 +103,7 @@ void compacta(mat_spr *M, int i, int *n){
     (*n)--;
 }
 
-void atrib(mat_spr *M, int i, int *n, float v){
+void atrib(mat_spr *M, int i, int *n, long long int v){
     int j = 0;
    
    if (i < 0){
@@ -111,7 +111,7 @@ void atrib(mat_spr *M, int i, int *n, float v){
     exit( EXIT_FAILURE );
    }
 
-   j = lugar(M, i, n);
+   j = lugar(M, i, *n);
    if (j == -1){
     if (v != 0) {
         insere(M, i, n, v);
