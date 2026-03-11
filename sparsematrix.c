@@ -8,7 +8,7 @@ typedef struct {
 } mat_spr;
 
 void insere (mat_spr *M, int i, int *n, long long int v);
-int consul (mat_spr *M, int i, int n, long long int *v);
+void consul (mat_spr *M, int i, int n, long long int *v);
 int lugar (mat_spr *M, int i, int n);
 void compacta(mat_spr *M, int i, int *n);
 void atrib(mat_spr *M, int i, int *n, long long int v);
@@ -21,7 +21,8 @@ int n = 0;
 
 scanf("%d", &op);
 
-mat_spr * M = (mat_spr*)calloc(op, sizeof(mat_spr)); // alocar dinamicamente o tamanho maximo para o numero de entradas, que podem ser todas de insercao
+mat_spr * M = (mat_spr*)calloc(op, sizeof(mat_spr));
+if (M == NULL) return 1; // alocar dinamicamente o tamanho maximo para o numero de entradas, que podem ser todas de insercao
 
 while (inicio < op){
     inicio++;
@@ -46,13 +47,13 @@ while (inicio < op){
         printf("%lld\n", valorConsul);
     }
 }
-
+ return 0;
 }
 
 void insere(mat_spr *M, int i, int *n, long long int v){
     int j = 0, k = 0;
 
-    while (M[j].ind < i) j++;
+    while (j < *n && M[j].ind < i) j++;
 
     for (k = *n; k > j; k--){
         M[k] = M[k - 1];
@@ -74,7 +75,7 @@ int lugar(mat_spr *M, int i, int n) {
 }
 
 
-int consul(mat_spr *M, int i, int n, long long int *v){
+void consul(mat_spr *M, int i, int n, long long int *v){
    int j = 0;
    
    if (i < 0){
