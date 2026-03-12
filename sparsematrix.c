@@ -47,7 +47,8 @@ while (inicio < op){
         printf("%lld\n", valorConsul);
     }
 }
- return 0;
+    free(M);
+    return 0;
 }
 
 void insere(mat_spr *M, int i, int *n, long long int v){
