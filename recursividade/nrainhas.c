@@ -13,8 +13,7 @@ int main () {
     for (int i = 0; i < N; i++) {
     tabuleiro[i] = calloc(N, sizeof(int));
     }
-
-
+    
     int vzs = recur(0, N, tabuleiro);
     printf("%d", vzs);
 
